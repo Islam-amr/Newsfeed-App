@@ -1,14 +1,9 @@
 import React from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
+import AppContainer from './src/navigation/AppContainer';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <SafeAreaView>
-        <Text>Navigation setup</Text>
-      </SafeAreaView>
-    </NavigationContainer>
+    <AppContainer />
   )
 }
 
