@@ -17,5 +17,25 @@ export default StyleSheet.create({
         height: 160,
         width: width - width * 0.07,
         borderRadius: 14
+    },
+    errorContainer: {
+        flex: 1,
+        backgroundColor: colors.BLACK,
+        justifyContent: 'center',
+        alignItems: "center"
+    },
+    errorImage: {
+        width: 120,
+        aspectRatio: 1.5
+    },
+    error: {
+        color: "white",
+        fontSize: 18,
+        fontWeight: "bold",
+        marginTop: 12,
+        textAlign: "center"
+    },
+    buttonStyle: {
+        marginTop: 12
     }
 });
