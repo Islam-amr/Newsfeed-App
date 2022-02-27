@@ -4,8 +4,8 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import FastImage from 'react-native-fast-image';
 import axios from 'axios'
 
-// components import
-import NewsItem from '../../components/NewsItem'
+// strings import
+import STRINGS from '../../utils/strings';
 
 // styles import
 import styles from './styles'
@@ -26,6 +26,7 @@ import { Articles } from '../../utils/dto';
 import Button from '../../components/Button';
 import SearchInput from '../../components/SearchInput';
 import KeyboardDismisser from '../../components/KeyboardDismisser';
+import NewsItem from '../../components/NewsItem'
 
 const SEARCH_DEBOUNCE_DURATION: number = 400 //ms
 const { height } = Dimensions.get('window') // to detect the whole mobile height
@@ -103,7 +104,7 @@ const NewsScreen = () => {
                 <View style={styles.marginContainer}>
                     <FastImage source={images.ERROR} style={styles.errorImage} resizeMode={'contain'} tintColor={colors.WHITE} />
                     <Text style={styles.error}>{error}</Text>
-                    <Button title={'Retry'} buttonStyle={styles.buttonStyle} onPress={fetchNews} />
+                    <Button title={STRINGS.t('retry')} buttonStyle={styles.buttonStyle} onPress={fetchNews} />
                 </View>
             </View>
         )
@@ -119,7 +120,7 @@ const NewsScreen = () => {
                 {newsData.length == 0 ?
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <FastImage source={images.NO_RESULT} style={{ width: 120, aspectRatio: 1.5 }} tintColor={'white'} resizeMode={'contain'} />
-                        <Text style={{ color: 'white', fontSize: 18, fontWeight: '700', marginTop: 18 }}>No Result Found</Text>
+                        <Text style={{ color: 'white', fontSize: 18, fontWeight: '700', marginTop: 18 }}>{STRINGS.t('noResult')}</Text>
                     </View> :
                     <FlatList<Articles>
                         data={newsData}

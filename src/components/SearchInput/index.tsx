@@ -11,6 +11,9 @@ import images from '../../utils/images';
 // styles import
 import styles from './styles';
 
+// strings import
+import strings from '../../utils/strings'
+
 type SearchInputProps = React.ComponentType<typeof TextInput> & {
     inputContainerStyle?: ViewStyle
 }
@@ -24,7 +27,7 @@ const SearchInput: React.FC<SearchInputProps> = (props) => {
                 <FastImage source={images.SEARCH} style={styles.icon} resizeMode={'contain'} tintColor={colors.WHITE} />
             </View>
             <View style={[styles.inputContainer, { ...inputContainerStyle }]}>
-                <TextInput ref={inputRef} placeholder={'Search'} placeholderTextColor={colors.WHITE} style={styles.input} {...restOfProps} />
+                <TextInput ref={inputRef} placeholder={strings.t('search')} placeholderTextColor={colors.WHITE} style={styles.input} {...restOfProps} />
             </View>
         </TouchableOpacity >
     )

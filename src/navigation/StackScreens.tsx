@@ -10,6 +10,9 @@ import NewsScreen from '../screens/NewsScreen';
 // colors import
 import colors from '../utils/colors';
 
+// string import
+import strings from '../utils/strings'
+
 const headerStyle = {
     backgroundColor: colors.BLACK
 }
@@ -24,7 +27,7 @@ const Stack = createNativeStackNavigator();
 const NewsStackScreens = () => {
     return (
         <Stack.Navigator screenOptions={{ headerStyle, headerTitleStyle }}>
-            <Stack.Screen name={screens.NEWS_SCREEN} component={NewsScreen} options={{ title: 'News' }} />
+            <Stack.Screen name={screens.NEWS_SCREEN} component={NewsScreen} options={{ title: strings.t('NewsScreen') }} />
         </Stack.Navigator>
     )
 }

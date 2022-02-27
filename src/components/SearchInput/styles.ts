@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
 import colors from '../../utils/colors'
 
+// strings import
+import STRINGS from '../../utils/strings'
+
 export default StyleSheet.create({
     searchContainer: {
         marginTop: 4,
@@ -23,11 +26,13 @@ export default StyleSheet.create({
         height: '50%'
     },
     inputContainer: {
-        flex: 0.85
+        flex: 0.85,
     },
     input: {
         width: '100%',
         height: '100%',
-        color: colors.WHITE
+        fontSize: 16,
+        color: colors.WHITE,
+        textAlign: STRINGS.language == 'en' ? 'left' : 'right'
     }
 })
