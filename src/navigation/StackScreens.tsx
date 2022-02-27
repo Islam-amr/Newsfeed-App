@@ -27,7 +27,7 @@ const Stack = createNativeStackNavigator();
 const NewsStackScreens = () => {
     return (
         <Stack.Navigator screenOptions={{ headerStyle, headerTitleStyle }}>
-            <Stack.Screen name={screens.NEWS_SCREEN} component={NewsScreen} options={{ title: strings.t('NewsScreen') }} />
+            <Stack.Screen name={screens.NEWS_SCREEN} component={NewsScreen} options={{ title: strings.t('newsScreen') }} />
         </Stack.Navigator>
     )
 }
