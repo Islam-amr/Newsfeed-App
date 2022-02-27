@@ -14,7 +14,6 @@ export default StyleSheet.create({
     newsImage: {
         width: '100%',
         aspectRatio: 1.5,
-        resizeMode: 'cover'
     },
     shadedLayerContainer: {
         position: 'absolute',

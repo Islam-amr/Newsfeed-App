@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
+import FastImage from 'react-native-fast-image'
 import LinearGradient from 'react-native-linear-gradient'
 
 // colors import
@@ -15,7 +16,7 @@ const LINEAR_END = { x: 0, y: 0.75 }
 const NewsItem = ({ item }) => {
     return (
         <TouchableOpacity activeOpacity={0.8} style={styles.cardContainer}>
-            <Image source={{ uri: item.urlToImage }} style={[{ width: item.urlToImage ? '100%' : '60%' }, styles.newsImage]} />
+            <FastImage source={{ uri: item.urlToImage }} style={[{ width: item.urlToImage ? '100%' : '60%' }, styles.newsImage]} resizeMode={'cover'} />
             <View style={styles.shadedLayerContainer}>
                 <LinearGradient start={LINEAR_START} end={LINEAR_END} colors={[colors.TRANSPARENT, colors.DARK_GREY]} style={styles.linearContainer}>
                     <View style={styles.titleContainer}>
