@@ -1,5 +1,4 @@
-import React from 'react'
-import { createRef } from 'react';
+import React, { createRef, RefObject } from 'react'
 import { TextInput, View, TouchableOpacity, ViewStyle } from 'react-native'
 import FastImage from 'react-native-fast-image';
 
@@ -18,13 +17,13 @@ type SearchInputProps = React.ComponentType<typeof TextInput> & {
 
 const SearchInput: React.FC<SearchInputProps> = (props) => {
     const { inputContainerStyle, ...restOfProps } = props
-    const inputRef = createRef<TextInput>();
+    const inputRef: RefObject<TextInput> = createRef();
     return (
         <TouchableOpacity activeOpacity={1} style={styles.searchContainer} onPress={() => inputRef.current.focus()}>
             <View style={styles.iconContainer}>
                 <FastImage source={images.SEARCH} style={styles.icon} resizeMode={'contain'} tintColor={colors.WHITE} />
             </View>
-            <View style={styles.inputContainer}>
+            <View style={[styles.inputContainer, { ...inputContainerStyle }]}>
                 <TextInput ref={inputRef} placeholder={'Search'} placeholderTextColor={colors.WHITE} style={styles.input} {...restOfProps} />
             </View>
         </TouchableOpacity >

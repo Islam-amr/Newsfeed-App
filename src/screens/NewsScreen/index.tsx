@@ -19,25 +19,28 @@ import images from '../../utils/images';
 // colors import
 import colors from '../../utils/colors';
 
+// dtos import
+import { Articles } from '../../utils/dto';
+
 // components import
 import Button from '../../components/Button';
 import SearchInput from '../../components/SearchInput';
 import KeyboardDismisser from '../../components/KeyboardDismisser';
 
-const SEARCH_DEBOUNCE_DURATION = 400 //ms
+const SEARCH_DEBOUNCE_DURATION: number = 400 //ms
 const { height } = Dimensions.get('window') // to detect the whole mobile height
 const skeltonItemsEstimation: number = Math.round(height * 0.9 / 160) - 1 // to estimate how much skeleton item could fit the phone screen
 const skeltonList: number[] = Array(skeltonItemsEstimation).fill(null).map((_, i) => i); // initialize sequenced array of the estimated length
 
 
-const renderNewsItem = ({ item }) => <NewsItem item={item} /> // to avoid anonymous function and re-render on renderItem
+const renderNewsItem = ({ item }: { item: Articles }) => <NewsItem item={item} /> // to avoid anonymous function and re-render on renderItem
 
 const NewsScreen = () => {
-    const [searchKeyword, setSearchKeyword] = useState('') // to store search keyword
-    const [newsData, setNewsData] = useState([]) // to store news data 
-    const [loading, setLoading] = useState(false) // to handle waiting while api respond
-    const [refresh, setRefresh] = useState(false) // to handle pull to refresh
-    const [error, setError] = useState(null) // to handle bad request
+    const [searchKeyword, setSearchKeyword] = useState<string>('') // to store search keyword
+    const [newsData, setNewsData] = useState<Articles[]>([]) // to store news data 
+    const [loading, setLoading] = useState<boolean>(false) // to handle waiting while api respond
+    const [refresh, setRefresh] = useState<boolean>(false) // to handle pull to refresh
+    const [error, setError] = useState<string | null>(null) // to handle bad request
 
     // to handle news api call
     const fetchNews = async (searchKeyword?: string, isRefreshing?: boolean) => {
@@ -118,7 +121,7 @@ const NewsScreen = () => {
                         <FastImage source={images.NO_RESULT} style={{ width: 120, aspectRatio: 1.5 }} tintColor={'white'} resizeMode={'contain'} />
                         <Text style={{ color: 'white', fontSize: 18, fontWeight: '700', marginTop: 18 }}>No Result Found</Text>
                     </View> :
-                    <FlatList
+                    <FlatList<Articles>
                         data={newsData}
                         showsVerticalScrollIndicator={false}
                         style={styles.marginContainer}

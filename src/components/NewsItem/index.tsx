@@ -9,11 +9,14 @@ import colors from '../../utils/colors'
 // styles import 
 import styles from './styles'
 
+// dto import
+import { Articles } from '../../utils/dto'
+
 // to handle linear effectiveness  
 const LINEAR_START = { x: 0, y: 0.5 }
 const LINEAR_END = { x: 0, y: 0.75 }
 
-const NewsItem = ({ item }) => {
+const NewsItem = ({ item }: { item: Articles }) => {
     return (
         <TouchableOpacity activeOpacity={0.8} style={styles.cardContainer}>
             <FastImage source={{ uri: item.urlToImage }} style={[{ width: item.urlToImage ? '100%' : '60%' }, styles.newsImage]} resizeMode={'cover'} />
