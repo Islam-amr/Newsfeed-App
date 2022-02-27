@@ -1,13 +1,13 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 
-// stacks import
-import { NewsStackScreens } from './StackScreens'
+// Botttom Tabs import
+import BottomTabs from './BottomTabs'
 
 const AppContainer = () => {
     return (
         <NavigationContainer>
-            <NewsStackScreens />
+            <BottomTabs />
         </NavigationContainer>
     )
 }

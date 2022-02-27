@@ -6,6 +6,7 @@ import screens from '../utils/screens';
 
 // screens import
 import NewsScreen from '../screens/NewsScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 // colors import
 import colors from '../utils/colors';
@@ -32,4 +33,13 @@ const NewsStackScreens = () => {
     )
 }
 
-export { NewsStackScreens }
+const SettingsStackScreens = () => {
+    return (
+        <Stack.Navigator screenOptions={{ headerStyle, headerTitleStyle }}>
+            <Stack.Screen name={screens.SETTINGS_SCREEN} component={SettingsScreen} options={{ title: strings.t('settings') }} />
+        </Stack.Navigator>
+    )
+}
+
+
+export { NewsStackScreens, SettingsStackScreens }
