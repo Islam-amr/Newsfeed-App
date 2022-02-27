@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, FlatList, Dimensions, Text, Image } from 'react-native'
+import { View, FlatList, Dimensions, Text, Image, RefreshControl } from 'react-native'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import FastImage from 'react-native-fast-image';
 import axios from 'axios'
@@ -36,12 +36,13 @@ const NewsScreen = () => {
     const [searchKeyword, setSearchKeyword] = useState('') // to store search keyword
     const [newsData, setNewsData] = useState([]) // to store news data 
     const [loading, setLoading] = useState(false) // to handle waiting while api respond
+    const [refresh, setRefresh] = useState(false) // to handle pull to refresh
     const [error, setError] = useState(null) // to handle bad request
 
     // to handle news api call
-    const fetchNews = async (searchKeyword?: string) => {
+    const fetchNews = async (searchKeyword?: string, isRefreshing?: boolean) => {
         setError(null)
-        setLoading(true)
+        isRefreshing ? setRefresh(true) : setLoading(true)
         try {
             const response = await axios.get(apis.FETCH_NEWS, {
                 params: {
@@ -49,9 +50,9 @@ const NewsScreen = () => {
                 }
             })
             setNewsData(response.data.articles) // to update the news data
-            setLoading(false)
+            isRefreshing ? setRefresh(false) : setLoading(false)
         } catch (e) {
-            setLoading(false)
+            isRefreshing ? setRefresh(false) : setLoading(false)
             setError(e.message)
         }
     }
@@ -123,6 +124,13 @@ const NewsScreen = () => {
                         style={styles.marginContainer}
                         keyExtractor={(_, index) => index.toString()}
                         renderItem={renderNewsItem}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={refresh}
+                                onRefresh={() => fetchNews(searchKeyword, true)}
+                                tintColor={colors.WHITE}
+                            />
+                        }
                     />}
             </View>
         </KeyboardDismisser>
