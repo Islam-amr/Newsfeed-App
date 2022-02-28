@@ -36,5 +36,19 @@ export default StyleSheet.create({
     },
     buttonStyle: {
         marginTop: 12
+    },
+    emptyStateCon: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    noResultImage: {
+        width: 120,
+        aspectRatio: 1.5
+    },
+    noResultTxt: {
+        fontSize: 18,
+        fontWeight: '700',
+        marginTop: 18
     }
 });

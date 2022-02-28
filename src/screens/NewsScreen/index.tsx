@@ -101,7 +101,7 @@ const NewsScreen = () => {
         return (
             <View style={[styles.errorContainer, { backgroundColor: colors.primary }]}>
                 <View style={styles.marginContainer}>
-                    <FastImage source={images.ERROR} style={{ width: 120, aspectRatio: 1.5 }} tintColor={colors.background} resizeMode={'contain'} />
+                    <FastImage source={images.ERROR} style={styles.noResultImage} tintColor={colors.background} resizeMode={'contain'} />
                     <Text style={[styles.error, { color: colors.text }]}>{error}</Text>
                     <Button title={STRINGS.t('retry')} buttonStyle={styles.buttonStyle} onPress={fetchNews} />
                 </View>
@@ -117,9 +117,9 @@ const NewsScreen = () => {
                     onChangeText={(text: string) => setSearchKeyword(text)}
                 />
                 {newsData.length == 0 ?
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <FastImage source={images.NO_RESULT} style={{ width: 120, aspectRatio: 1.5 }} tintColor={colors.background} resizeMode={'contain'} />
-                        <Text style={{ color: colors.text, fontSize: 18, fontWeight: '700', marginTop: 18 }}>{STRINGS.t('noResult')}</Text>
+                    <View style={styles.emptyStateCon}>
+                        <FastImage source={images.NO_RESULT} style={styles.noResultImage} tintColor={colors.background} resizeMode={'contain'} />
+                        <Text style={[styles.noResultTxt, { color: colors.text }]}>{STRINGS.t('noResult')}</Text>
                     </View> :
                     <FlatList<Article>
                         data={newsData}
