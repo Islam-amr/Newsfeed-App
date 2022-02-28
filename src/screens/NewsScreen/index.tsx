@@ -17,7 +17,7 @@ import apis from '../../utils/apis'
 import images from '../../utils/images';
 
 // dtos import
-import { Articles } from '../../utils/dto';
+import { Article } from '../../utils/dto';
 
 // components import
 import Button from '../../components/Button';
@@ -32,12 +32,12 @@ const skeltonItemsEstimation: number = Math.round(height * 0.8 / 160) - 1 // to 
 const skeltonList: number[] = Array(skeltonItemsEstimation).fill(null).map((_, i) => i); // initialize sequenced array of the estimated length
 
 
-const renderNewsItem = ({ item }: { item: Articles }) => <NewsItem item={item} /> // to avoid anonymous function and re-render on renderItem
+const renderNewsItem = ({ item }: { item: Article }) => <NewsItem item={item} /> // to avoid anonymous function and re-render on renderItem
 
 const NewsScreen = () => {
     const { colors } = useTheme()
     const [searchKeyword, setSearchKeyword] = useState<string>('') // to store search keyword
-    const [newsData, setNewsData] = useState<Articles[]>([]) // to store news data 
+    const [newsData, setNewsData] = useState<Article[]>([]) // to store news data 
     const [loading, setLoading] = useState<boolean>(false) // to handle waiting while api respond
     const [refresh, setRefresh] = useState<boolean>(false) // to handle pull to refresh
     const [error, setError] = useState<string | null>(null) // to handle bad request
@@ -56,7 +56,7 @@ const NewsScreen = () => {
             isRefreshing ? setRefresh(false) : setLoading(false)
         } catch (e) {
             isRefreshing ? setRefresh(false) : setLoading(false)
-            setError(e.message)
+            setError('Network error')
         }
     }
 
@@ -121,7 +121,7 @@ const NewsScreen = () => {
                         <FastImage source={images.NO_RESULT} style={{ width: 120, aspectRatio: 1.5 }} tintColor={colors.background} resizeMode={'contain'} />
                         <Text style={{ color: colors.text, fontSize: 18, fontWeight: '700', marginTop: 18 }}>{STRINGS.t('noResult')}</Text>
                     </View> :
-                    <FlatList<Articles>
+                    <FlatList<Article>
                         data={newsData}
                         showsVerticalScrollIndicator={false}
                         style={styles.marginContainer}

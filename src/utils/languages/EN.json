@@ -11,5 +11,6 @@
     "languageWarningBody": "Changing language will restart the app",
     "cancel": "Cancel",
     "ok": "OK",
-    "darkMode": "Dark mode"
+    "darkMode": "Dark mode",
+    "details": "Details"
 }

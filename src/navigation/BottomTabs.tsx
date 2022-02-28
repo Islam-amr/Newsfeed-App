@@ -6,9 +6,6 @@ import { useTheme } from '@react-navigation/native';
 // stacks import
 import { NewsStackScreens, SettingsStackScreens } from './StackScreens'
 
-// colors import
-import colors from '../utils/colors';
-
 // images import
 import images from '../utils/images';
 

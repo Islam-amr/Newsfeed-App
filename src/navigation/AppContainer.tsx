@@ -13,6 +13,9 @@ import BottomTabs from './BottomTabs'
 // colors import
 import colors from '../utils/colors'
 
+// deep link config
+import deepLinkingConfig from '../utils/deepLinkingConfig';
+
 const DarkMode = {
     ...DarkTheme,
     colors: {
@@ -42,6 +45,7 @@ const LightMode = {
 const AppContainer = () => {
     const [darkMode, setDarkMode] = useState<boolean>(false)
 
+    // device native event listner to trigger theme switching
     useEffect(() => {
         let eventListener = EventRegister.addEventListener('changeThemeEvent', (data) => {
             setDarkMode(data)
@@ -52,7 +56,13 @@ const AppContainer = () => {
     return (
         <>
             <StatusBar backgroundColor={darkMode ? colors.BLACK : colors.WHITE} barStyle={darkMode ? 'light-content' : 'dark-content'} />
-            <NavigationContainer theme={darkMode ? DarkMode : LightMode}>
+            <NavigationContainer
+                linking={{
+                    prefixes: ["newsfeedapp://app"],
+                    config: deepLinkingConfig
+                }}
+                theme={darkMode ? DarkMode : LightMode}
+            >
                 <BottomTabs />
             </NavigationContainer>
         </>

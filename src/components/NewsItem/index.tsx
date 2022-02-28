@@ -10,15 +10,18 @@ import colors from '../../utils/colors'
 import styles from './styles'
 
 // dto import
-import { Articles } from '../../utils/dto'
+import { Article } from '../../utils/dto'
+import { useNavigation } from '@react-navigation/native'
+import screens from '../../utils/screens'
 
 // to handle linear effectiveness  
 const LINEAR_START = { x: 0, y: 0.5 }
 const LINEAR_END = { x: 0, y: 0.75 }
 
-const NewsItem = ({ item }: { item: Articles }) => {
+const NewsItem = ({ item }: { item: Article }) => {
+    const navigation = useNavigation()
     return (
-        <TouchableOpacity activeOpacity={0.8} style={styles.cardContainer}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.cardContainer} onPress={() => navigation.navigate(screens.NEWS_DETAILS_SCREEN, { item })}>
             <FastImage source={{ uri: item.urlToImage }} style={[{ width: item.urlToImage ? '100%' : '60%' }, styles.newsImage]} resizeMode={'cover'} />
             <View style={styles.shadedLayerContainer}>
                 <LinearGradient start={LINEAR_START} end={LINEAR_END} colors={[colors.TRANSPARENT, colors.DARK_GREY]} style={styles.linearContainer}>

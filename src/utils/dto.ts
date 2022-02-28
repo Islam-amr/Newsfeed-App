@@ -1,10 +1,10 @@
-interface ArticlesSourcee {
+interface ArticleSourcee {
     id: string | null,
     name: string | null
 }
 
-export interface Articles {
-    source: ArticlesSourcee
+export interface Article {
+    source: ArticleSourcee
     author: string | null,
     title: string | null,
     description: string | null,
