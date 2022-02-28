@@ -51,7 +51,7 @@ const AppContainer = () => {
 
     return (
         <>
-            <StatusBar backgroundColor={colors.BLACK} barStyle={darkMode ? 'light-content' : 'dark-content'} />
+            <StatusBar backgroundColor={darkMode ? colors.BLACK : colors.WHITE} barStyle={darkMode ? 'light-content' : 'dark-content'} />
             <NavigationContainer theme={darkMode ? DarkMode : LightMode}>
                 <BottomTabs />
             </NavigationContainer>
