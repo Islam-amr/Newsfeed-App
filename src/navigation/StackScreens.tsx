@@ -1,5 +1,6 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useTheme } from '@react-navigation/native';
 
 // all screens variables
 import screens from '../utils/screens';
@@ -14,28 +15,31 @@ import colors from '../utils/colors';
 // string import
 import strings from '../utils/strings'
 
-const headerStyle = {
-    backgroundColor: colors.BLACK
-}
-const headerTitleStyle = {
-    color: colors.WHITE,
-    fontSize: 24,
-    fontWeight: 'bold'
-}
-
 const Stack = createNativeStackNavigator();
 
 const NewsStackScreens = () => {
+    const { colors } = useTheme()
     return (
-        <Stack.Navigator screenOptions={{ headerStyle, headerTitleStyle }}>
+        <Stack.Navigator screenOptions={{
+            headerStyle: { backgroundColor: colors.primary, },
+            headerShadowVisible: false,
+            headerBackTitleVisible: false,
+            headerTitleAlign: 'center', headerTitleStyle: { color: colors.text, fontSize: 24, fontWeight: 'bold' }
+        }}>
             <Stack.Screen name={screens.NEWS_SCREEN} component={NewsScreen} options={{ title: strings.t('newsScreen') }} />
         </Stack.Navigator>
     )
 }
 
 const SettingsStackScreens = () => {
+    const { colors } = useTheme()
     return (
-        <Stack.Navigator screenOptions={{ headerStyle, headerTitleStyle }}>
+        <Stack.Navigator screenOptions={{
+            headerStyle: { backgroundColor: colors.primary },
+            headerShadowVisible: false,
+            headerBackTitleVisible: false,
+            headerTitleAlign: 'center', headerTitleStyle: { color: colors.text, fontSize: 24, fontWeight: 'bold' }
+        }}>
             <Stack.Screen name={screens.SETTINGS_SCREEN} component={SettingsScreen} options={{ title: strings.t('settings') }} />
         </Stack.Navigator>
     )

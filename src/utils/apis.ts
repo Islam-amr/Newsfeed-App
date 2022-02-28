@@ -1,3 +1,3 @@
 export default {
-    FETCH_NEWS: 'https://newsapi.org/v2/top-headlines?apiKey=16d4fca2d0474626bf683d144a0d300c&country=ar'
+    FETCH_NEWS: 'https://newsapi.org/v2/top-headlines?apiKey=6a8146d3fd4a4e7fa809450cb30a59e2&country=fr'
 }

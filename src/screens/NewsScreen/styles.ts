@@ -10,13 +10,12 @@ export default StyleSheet.create({
         paddingHorizontal: 14
     },
     marginContainer: {
-        marginVertical: 14
+        marginTop: 14
     },
     skeletonCard: {
-        opacity: 0.2,
         height: 160,
         width: width - width * 0.07,
-        borderRadius: 14
+        borderRadius: 14,
     },
     errorContainer: {
         flex: 1,

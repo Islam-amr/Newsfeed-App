@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, FlatList, Dimensions, Text, Image, RefreshControl } from 'react-native'
+import { View, FlatList, Dimensions, Text, RefreshControl } from 'react-native'
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import FastImage from 'react-native-fast-image';
 import axios from 'axios'
@@ -16,9 +16,6 @@ import apis from '../../utils/apis'
 // images import
 import images from '../../utils/images';
 
-// colors import
-import colors from '../../utils/colors';
-
 // dtos import
 import { Articles } from '../../utils/dto';
 
@@ -27,16 +24,18 @@ import Button from '../../components/Button';
 import SearchInput from '../../components/SearchInput';
 import KeyboardDismisser from '../../components/KeyboardDismisser';
 import NewsItem from '../../components/NewsItem'
+import { useTheme } from '@react-navigation/native';
 
 const SEARCH_DEBOUNCE_DURATION: number = 400 //ms
 const { height } = Dimensions.get('window') // to detect the whole mobile height
-const skeltonItemsEstimation: number = Math.round(height * 0.9 / 160) - 1 // to estimate how much skeleton item could fit the phone screen
+const skeltonItemsEstimation: number = Math.round(height * 0.8 / 160) - 1 // to estimate how much skeleton item could fit the phone screen
 const skeltonList: number[] = Array(skeltonItemsEstimation).fill(null).map((_, i) => i); // initialize sequenced array of the estimated length
 
 
 const renderNewsItem = ({ item }: { item: Articles }) => <NewsItem item={item} /> // to avoid anonymous function and re-render on renderItem
 
 const NewsScreen = () => {
+    const { colors } = useTheme()
     const [searchKeyword, setSearchKeyword] = useState<string>('') // to store search keyword
     const [newsData, setNewsData] = useState<Articles[]>([]) // to store news data 
     const [loading, setLoading] = useState<boolean>(false) // to handle waiting while api respond
@@ -77,13 +76,13 @@ const NewsScreen = () => {
     if (loading) {
         return (
             <KeyboardDismisser>
-                <View style={styles.screenContainer}>
+                <View style={[styles.screenContainer, { backgroundColor: colors.primary }]}>
                     <SearchInput
                         value={searchKeyword}
                         onChangeText={(text: string) => setSearchKeyword(text)}
                     />
                     <View style={styles.marginContainer}>
-                        <SkeletonPlaceholder>
+                        <SkeletonPlaceholder speed={1000} highlightColor={colors.text} backgroundColor={colors.border}>
                             {skeltonList.map((item: number) => {
                                 return (
                                     <SkeletonPlaceholder.Item key={item} alignItems="center" justifyContent='space-between' marginBottom={18} >
@@ -100,10 +99,10 @@ const NewsScreen = () => {
 
     if (error) {
         return (
-            <View style={styles.errorContainer}>
+            <View style={[styles.errorContainer, { backgroundColor: colors.primary }]}>
                 <View style={styles.marginContainer}>
-                    <FastImage source={images.ERROR} style={styles.errorImage} resizeMode={'contain'} tintColor={colors.WHITE} />
-                    <Text style={styles.error}>{error}</Text>
+                    <FastImage source={images.ERROR} style={{ width: 120, aspectRatio: 1.5 }} tintColor={colors.background} resizeMode={'contain'} />
+                    <Text style={[styles.error, { color: colors.text }]}>{error}</Text>
                     <Button title={STRINGS.t('retry')} buttonStyle={styles.buttonStyle} onPress={fetchNews} />
                 </View>
             </View>
@@ -112,15 +111,15 @@ const NewsScreen = () => {
 
     return (
         <KeyboardDismisser>
-            <View style={styles.screenContainer}>
+            <View style={[styles.screenContainer, { backgroundColor: colors.primary }]}>
                 <SearchInput
                     value={searchKeyword}
                     onChangeText={(text: string) => setSearchKeyword(text)}
                 />
                 {newsData.length == 0 ?
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <FastImage source={images.NO_RESULT} style={{ width: 120, aspectRatio: 1.5 }} tintColor={'white'} resizeMode={'contain'} />
-                        <Text style={{ color: 'white', fontSize: 18, fontWeight: '700', marginTop: 18 }}>{STRINGS.t('noResult')}</Text>
+                        <FastImage source={images.NO_RESULT} style={{ width: 120, aspectRatio: 1.5 }} tintColor={colors.background} resizeMode={'contain'} />
+                        <Text style={{ color: colors.text, fontSize: 18, fontWeight: '700', marginTop: 18 }}>{STRINGS.t('noResult')}</Text>
                     </View> :
                     <FlatList<Articles>
                         data={newsData}
@@ -132,7 +131,7 @@ const NewsScreen = () => {
                             <RefreshControl
                                 refreshing={refresh}
                                 onRefresh={() => fetchNews(searchKeyword, true)}
-                                tintColor={colors.WHITE}
+                                tintColor={colors.background}
                             />
                         }
                     />}

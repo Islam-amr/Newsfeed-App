@@ -3,5 +3,13 @@
     "search": "Search",
     "noResult": "No Result Found",
     "retry": "Retry",
-    "settings": "Settings"
+    "settings": "Settings",
+    "language": "Language",
+    "english": "English",
+    "arabic": "عربي",
+    "warning": "Warning",
+    "languageWarningBody": "Changing language will restart the app",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "darkMode": "Dark mode"
 }

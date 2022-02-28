@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '../../utils/colors';
 
 export default StyleSheet.create({
@@ -7,4 +7,12 @@ export default StyleSheet.create({
         backgroundColor: colors.BLACK,
         paddingHorizontal: 14
     },
+    darkmodeContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    darkText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+    }
 });
