@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../utils/colors';
 
 export default StyleSheet.create({
@@ -8,11 +8,14 @@ export default StyleSheet.create({
         paddingHorizontal: 14
     },
     darkmodeContainer: {
-        flexDirection: 'row',
-        alignItems: 'center'
+        justifyContent: 'center'
     },
     darkText: {
+        textAlign: 'left',
         fontWeight: 'bold',
         fontSize: 16,
+    },
+    switch: {
+        marginTop: 12
     }
 });
